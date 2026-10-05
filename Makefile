@@ -47,9 +47,7 @@ bin65/coreboot.llvm.prg: src/main.c src/ascii-font.c src/c65reboot.h
 	$(COMPILER_PATH)/llvm-objdump -drS --print-imm-hex bin65/coreboot.llvm.prg.elf >bin65/coreboot.llvm.dump
 
 bin65/coreboot:   bin65/coreboot.llvm.prg src/ascii-font.c
-	tools/fixaddr.sh
-	acme --setpc 0x2001 --cpu m65 --format cbm --outfile tool65/c65toc64wrapper.prg src/c65toc64wrapper-retargeted.asm
-	cat tool65/c65toc64wrapper.prg $< > $@
+	m65wrap -o $@ $<
 
 src/ascii-font.c:	tools/make-ascii-font-c.sh asciifont.bin
 	tools/make-ascii-font-c.sh
