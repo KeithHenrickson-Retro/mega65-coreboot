@@ -64,6 +64,7 @@ clean:
 	rm -f src/c65toc64wrapper-retargeted.asm
 	rm -f src/c65reboot.h
 	rm -f src/ascii-font.c
+	rm -f src/mega65/function_table.c
 	rm -f repro.tar
 	rm -f *.d81
 
